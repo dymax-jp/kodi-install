@@ -36,13 +36,12 @@ apt install \
     libenca-dev \
     libexiv2-dev \
     libflac-dev \
-    libflatbuffers-dev \
     libfmt-dev \
     libfontconfig-dev \
-    libfreetype6-dev \
+    libfreetype-dev \
     libfribidi-dev \
     libfstrcmp-dev \
-    libgcrypt-dev \
+    libgcrypt20-dev \
     libgif-dev \
     libgl1-mesa-dev \
     libgles2-mesa-dev \
@@ -87,4 +86,4 @@ apt install \
     uuid-dev \
     zlib1g-dev
 
-#sudo make -C ${KODI_SOURCE_DIR}/tools/depends/target/flatbuffers PREFIX=/usr/local
+make -C ../kodi-source/tools/depends/target/flatbuffers PREFIX=/usr/local

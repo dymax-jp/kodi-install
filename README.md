@@ -1,4 +1,4 @@
-# Compile and install Kodi on Debian/Ubuntu distributions #
+# Compile and install Kodi on Kubuntu Noble distributions #
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@
 
 ## WARNING
 
-Currently there is a problem when building the binary addons for Kodi Matrix with the scripts `build-binary-addons-*.sh`. I am investigating the issue and will publish a fix when ready.
+Currently project in progress.
 
 ## Readme me first ##
 
@@ -22,77 +22,79 @@ The **Kodi source directory**, the **Kodi build directory**, the **Kodi Install 
 # Kodi install configuration file. No trailing / in these variables.
 
 # Kodi source directory.
-KODI_SOURCE_DIR=/home/kodi/kodi-source
-KODI_SOURCE_TAG=18.9-Leia
-KODI_BUILD_DIR=/home/kodi/kodi-build
-KODI_INSTALL_DIR=/home/kodi/kodi-bin
+KODI_SOURCE_DIR=/home/$USER/kodi-source
+KODI_SOURCE_TAG=21.2-Omega
+KODI_BUILD_DIR=/home/$USER/kodi-build
+KODI_INSTALL_DIR=/home/$USER/kodi-bin
 ```
 
-For the time being do not use spaces in the directory names and do not include a tralining `/` in the directory names. The above example is for a Linux user name `kodi` whose home directory is `/home/kodi`. Following with the example:
+For the time being do not use spaces in the directory names and do not include a tralining `/` in the directory names. Following with the example:
 
- * Kodi source code is located in `/home/kodi/kodi-source/`.
+ * Kodi source code is located in `/home/$USER/kodi-source/`.
  
- * Kodi temporary build directory is `/home/kodi/kodi-build/`. You can safely
+ * Kodi temporary build directory is `/home/$USER/kodi-build/`. You can safely
    delete it once Kodi has been compiled and installed.
 
- * Kodi will be installed in the directory `/home/kodi/kodi-bin/`.
+ * Kodi will be installed in the directory `/home/$USER/kodi-bin/`.
 
- * Kodi user data directory is `/home/kodi/.kodi/` by default. This directory will be created automatically the first time you execute Kodi.
+ * Kodi user data directory is `/home/$USER/.kodi/` by default. This directory will be created automatically the first time you execute Kodi.
 
 Once compiled and installed, you can execute Kodi in several ways:
 ```
-$ /home/kodi/kodi-bin/bin/kodi
-$ /home/kodi/kodi-bin/bin/kodi-standalone
-$ /home/kodi/kodi-bin/lib/kodi/kodi-x11
+$ /home/$USER/kodi-bin/bin/kodi
+$ /home/$USER/kodi-bin/bin/kodi-standalone
+$ /home/$USER/kodi-bin/lib/kodi/kodi-x11
 ```
 
-The actual Kodi executable is `/home/kodi/kodi-bin/lib/kodi/kodi-x11`. The first two files are shell scripts that call the actual Kodi executable `kodi-x11`.
+The actual Kodi executable is `/home/$USER/kodi-bin/lib/kodi/kodi-x11`. The first two files are shell scripts that call the actual Kodi executable `kodi-x11`.
 
 ## Cloning this repository ##
 
-If you don't have `git` installed then execute as `root` user:
+If you don't have `git` installed then execute:
 ```
-# apt-get install git
+# sudo apt-get install git
 ```
 
 To clone this repository:
 ```
-$ cd /home/kodi/
+$ mkdir -p /home/$USER/kodi
+$ cd /home/$USER/kodi/
 $ git clone https://github.com/dymax-jp/Kodi-Install.git
 ```
 
 The Kodi compilation tools will be cloned into the directory 
-`/home/kodi/Kodi-Install/`.
+`/home/$USER/kodi/Kodi-Install/`.
 
 
 ## Clone and prepare Kodi source code ##
 
 As the `kodi` user clone the Kodi source code. This will take a while:
 ```
-$ cd /home/kodi/
+$ mkdir -p /home/$USER/kodi
+$ cd /home/$USER/kodi/
 $ git clone https://github.com/xbmc/xbmc.git kodi-source
 ```
 
 If you want to compile a particular version of Kodi first have a look at the tags in the repository:
 ```
-$ cd /home/kodi/kodi-source/
+$ cd /home/$USER/kodi/kodi-source/
 $ git tag
 ...
-16.0-Jarvis
-17.0-Krypton
-17.6-Krypton
-18.0-Leia
-18.9-Leia
-19.0-Matrix
-19.1-Matrix
+19.5-Matrix
+20.0-Nexus
+20.1-Nexus
+20.2-Nexus
+21.0-Omega
+21.1-Omega
+21.2-Omega
 ...
 $ 
 ```
 
 Each tag corresponds to a released version of Kodi. Now, tell `git` to set the Kodi source code to the version you want:
 ```
-$ cd /home/kodi/kodi-source/
-$ git checkout 19.1-Matrix
+$ cd /home/$USER/kodi/kodi-source/
+$ git checkout 21.2-Omega
 ```
 
 The Kodi source code is now ready for compilation.
@@ -100,15 +102,15 @@ The Kodi source code is now ready for compilation.
 
 ## Compile and installing Kodi for the first time ##
 
-First you need to install the build dependencies required to compile Kodi. As `root` execute:
+First you need to install the build dependencies required to compile Kodi:
 ```
-# cd /home/kodi/Kodi-Install/
-# ./install-build-dependencies-kubuntu-noble.sh
+# cd /home/$USER/kodi/Kodi-Install/
+# sudo ./install-build-dependencies-kubuntu-noble.sh
 ```
 
-As the `kodi` user, the Kodi build directory needs to be configured before compilation:
+The Kodi build directory needs to be configured before compilation:
 ```
-$ cd /home/kodi/Kodi-Install/
+$ cd /home/$USER/kodi/Kodi-Install/
 $ ./configure-kodi.sh
 ```
 
@@ -122,7 +124,7 @@ Finally, to install Kodi, the Kodi binary addons and the required runtime files 
 $ ./install-kodi.sh
 ```
 
-The first time you execute Kodi the userdata directory `/home/.kodi/` will be created.
+The first time you execute Kodi the userdata directory `/home/$USER/.kodi/` will be created.
 
 Now that Kodi is installed you can safely delete the Kodi build directory to save disk space:
 ```
@@ -136,23 +138,23 @@ Do not purge the build directory before compiling the binary addons.
 
 To compile all the binary addons:
 ```
-$ cd /home/kodi/Kodi-Install/
+$ cd /home/$USER/kodi/Kodi-Install/
 $ ./build-binary-addons-all.sh
 ```
 
-or instead execute this if you are not going to use Kodi personal video
+Or instead execute this if you are not going to use Kodi personal video
 recorder (PVR) features. This command compiles all binary addons except
 the PVR addons:
 ```
-$ cd /home/kodi/Kodi-Install/
+$ cd /home/$USER/kodi/Kodi-Install/
 $ ./build-binary-addons-no-pvr.sh
 ```
 
-the binary addons are automatically installed in `/home/kodi/bin-kodi/` after compilation.
+The binary addons are automatically installed in `/home/$USER/kodi/bin-kodi/` after compilation.
 
 
 To compile the Libretro cores (Kodi addons that let you play games) first edit the file
-`/home/kodi/KodiInstall/build-binary-addons-libretro-cores.sh` and comment/uncomment 
+`/home/$USER/kodi/KodiInstall/build-binary-addons-libretro-cores.sh` and comment/uncomment 
 the Libretro cores you want to build. Note that building **all** the cores takes about 5/6
 hours on a fast machine. Each MAME core takes 1 hour! Build only the cores you plan to use.
 ```
@@ -169,29 +171,29 @@ compile_core game.libretro.beetle-bsnes
 
 Finally, compile the Libretro cores:
 ```
-$ cd /home/kodi/Kodi-Install/
+$ cd /home/$USER/kodi/Kodi-Install/
 $ ./build-binary-addons-libretro-cores.sh
 ```
 
-the Libretro cores addons are automatically installed in `/home/kodi/bin-kodi/` after compilation.
+the Libretro cores addons are automatically installed in `/home/$USER/kodi/bin-kodi/` after compilation.
 
 ## Update Kodi ##
 
 Update Kodi source code:
 ```
-$ cd /home/kodi/kodi-source/
+$ cd /home/$USER/kodi/kodi-source/
 $ git checkout master
 $ git pull
 ```
 
 If you wish to set a specific version:
 ```
-$ git checkout 18.1-Leia
+$ git checkout 21.2-Omega
 ```
 
 Then configure, compile and install Kodi again:
 ```
-$ cd /home/kodi/Kodi-Install/
+$ cd /home/$USER/kodi/Kodi-Install/
 $ ./configure-kodi.sh
 $ ./build-kodi-x11.sh
 $ ./install-kodi.sh
