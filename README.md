@@ -58,7 +58,7 @@ If you don't have `git` installed then execute as `root` user:
 To clone this repository:
 ```
 $ cd /home/kodi/
-$ git clone https://github.com/Wintermute0110/Kodi-Install.git
+$ git clone https://github.com/dymax-jp/Kodi-Install.git
 ```
 
 The Kodi compilation tools will be cloned into the directory 
@@ -103,7 +103,7 @@ The Kodi source code is now ready for compilation.
 First you need to install the build dependencies required to compile Kodi. As `root` execute:
 ```
 # cd /home/kodi/Kodi-Install/
-# ./install-build-dependencies-debian.sh
+# ./install-build-dependencies-kubuntu-noble.sh
 ```
 
 As the `kodi` user, the Kodi build directory needs to be configured before compilation:

@@ -3,15 +3,18 @@
 # Install Kodi build dependencies for Ubuntu Focal Fossa.
 #
 
+#source configuration.sh
+
 # Install build tools
 apt install \
     build-essential debhelper \
     autoconf automake autopoint gettext autotools-dev cmake curl \
     default-jre doxygen gawk gdc gperf libtool \
-    lsb-release swig unzip yasm zip ccache
+    lsb-release swig unzip nasm zip ccache \
+    gcc meson ninja-build
 
 # Python stuff
-apt install python-dev python-pil
+apt install python3-dev python3-pil python3-pip
 
 # Install build libraries (alphabetical order0
 apt install \
@@ -31,22 +34,26 @@ apt install \
     libdrm-dev \
     libegl1-mesa-dev \
     libenca-dev \
+    libexiv2-dev \
     libflac-dev \
-    libfontconfig1-dev \
+    libflatbuffers-dev \
+    libfmt-dev \
+    libfontconfig-dev \
     libfreetype6-dev \
     libfribidi-dev \
     libfstrcmp-dev \
-    libgcrypt20-dev \
+    libgcrypt-dev \
     libgif-dev \
     libgl1-mesa-dev \
     libgles2-mesa-dev \
     libglu1-mesa-dev \
     libgnutls28-dev \
     libgpg-error-dev \
+    libgtest-dev \
     libiso9660-dev \
     libjpeg-dev \
     liblcms2-dev \
-    liblircclient-dev \
+    liblirc-dev \
     libltdl-dev \
     liblzo2-dev \
     libmicrohttpd-dev \
@@ -54,17 +61,21 @@ apt install \
     libnfs-dev \
     libogg-dev \
     libp8-platform-dev \
-    libpcre3-dev \
+    libpcre2-dev \
     libplist-dev \
     libpng-dev \
     libpulse-dev \
+    libshairplay-dev \
     libsmbclient-dev \
+    libspdlog-dev \
     libsqlite3-dev \
     libssl-dev \
     libtag1-dev \
     libtiff5-dev \
     libtinyxml-dev \
+    libtinyxml2-dev \
     libudev-dev \
+    libunistring-dev \
     libva-dev \
     libvdpau-dev \
     libvorbis-dev \
@@ -75,3 +86,5 @@ apt install \
     rapidjson-dev \
     uuid-dev \
     zlib1g-dev
+
+#sudo make -C ${KODI_SOURCE_DIR}/tools/depends/target/flatbuffers PREFIX=/usr/local
