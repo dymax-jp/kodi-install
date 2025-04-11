@@ -1,4 +1,4 @@
-# Compile and install Kodi on Kubuntu Noble distributions #
+# Compile and install Kodi on Kubuntu Noble #
 
 ## Table of Contents
 
@@ -68,7 +68,7 @@ The Kodi compilation tools will be cloned into the directory
 
 ## Clone and prepare Kodi source code ##
 
-As the `kodi` user clone the Kodi source code. This will take a while:
+To clone KODI repository:
 ```
 $ mkdir -p /home/$USER/kodi
 $ cd /home/$USER/kodi/
@@ -111,7 +111,7 @@ First you need to install the build dependencies required to compile Kodi:
 The Kodi build directory needs to be configured before compilation:
 ```
 $ cd /home/$USER/kodi/Kodi-Install/
-$ ./configure-kodi.sh
+$ ./configure-kodi-kubuntu-noble.sh
 ```
 
 Now it's time to compile Kodi. This will take a while (about 15 minutes on a fast computer):
@@ -154,7 +154,7 @@ The binary addons are automatically installed in `/home/$USER/kodi/bin-kodi/` af
 
 
 To compile the Libretro cores (Kodi addons that let you play games) first edit the file
-`/home/$USER/kodi/KodiInstall/build-binary-addons-libretro-cores.sh` and comment/uncomment 
+`/home/$USER/kodi/Kodi-Install/build-binary-addons-libretro-cores.sh` and comment/uncomment 
 the Libretro cores you want to build. Note that building **all** the cores takes about 5/6
 hours on a fast machine. Each MAME core takes 1 hour! Build only the cores you plan to use.
 ```
@@ -194,7 +194,7 @@ $ git checkout 21.2-Omega
 Then configure, compile and install Kodi again:
 ```
 $ cd /home/$USER/kodi/Kodi-Install/
-$ ./configure-kodi.sh
+$ ./configure-kodi-kubuntu-noble.sh
 $ ./build-kodi-x11.sh
 $ ./install-kodi.sh
 $ ./build-binary-addons-no-pvr.sh
@@ -209,7 +209,7 @@ $ ./build-binary-addons-libretro-cores.sh
 
 ## Notes ##
 
- * Compiling the binary addons with `build-binary-addons-no-pvr.sh` installs them in `/home/kodi/bin-kodi/` even if Kodi has not been installed before.
+ * Compiling the binary addons with `build-binary-addons-no-pvr.sh` installs them in `/home/$USER/kodi/bin-kodi/` even if Kodi has not been installed before.
 
  * The addons `game.controller.*` are not binary addons. They can be downloaded with the Kodi addon manager.
 
